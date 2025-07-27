@@ -59,15 +59,16 @@ def calculate_range(staff_info):
             print('Invalid input for no-pay days. Please enter an integer.') #error when the no_pay_days input non numeric values
 
     # Input and validate overtime_hours
-    overtime_hours = 0.0  
-    valid_input = False 
-    while not valid_input: 
+    overtime_hours = 0.0  #initialize with a default value  
+    valid_input = False #valid_input is a variable to check the status of the input.  Initial value to be False until the check is correct  
+    while not valid_input: #to initiate a loop until the user enter correct overtime_hours, if the entered value is a number with or without decimal is True 
         try:
-            overtime_hours = float(input('Enter number of overtime hours: ')) 
-            valid_input = True 
+            overtime_hours = float(input('Enter number of overtime hours: ')) #input the value 
+            valid_input = True #if no error in the input, which means the user input number with or without decimal 
         except ValueError:
-            print('Invalid input for overtime hours. Please enter a number.') 
+            print('Invalid input for overtime hours. Please enter a number.') #prompt user to input again
+     
 
 
-    before_tax = calculate_salary_from_range(staff_info, start_date, end_date, no_pay_days, overtime_hours)
+    before_tax = calculate_salary_from_range(staff_info, start_date, end_date, no_pay_days, overtime_hours) # call calculate_salary_from_range function to return before tax
     return before_tax
