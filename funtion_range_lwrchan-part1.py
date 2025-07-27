@@ -57,3 +57,13 @@ def calculate_range(staff_info):
                 valid_input = True #if the if statement is false, then valid_input is True
         except ValueError:
             print('Invalid input for no-pay days. Please enter an integer.') #error when the no_pay_days input non numeric values
+
+    # Input and validate overtime_hours
+    overtime_hours = 0.0  
+    valid_input = False 
+    while not valid_input: 
+        try:
+            overtime_hours = float(input('Enter number of overtime hours: ')) 
+            valid_input = True 
+        except ValueError:
+            print('Invalid input for overtime hours. Please enter a number.') 
