@@ -67,3 +67,7 @@ def calculate_range(staff_info):
             valid_input = True 
         except ValueError:
             print('Invalid input for overtime hours. Please enter a number.') 
+
+
+    before_tax = calculate_salary_from_range(staff_info, start_date, end_date, no_pay_days, overtime_hours)
+    return before_tax
