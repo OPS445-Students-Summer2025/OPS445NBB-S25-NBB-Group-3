@@ -22,6 +22,28 @@ def calculate_range(staff_info):
         else:
             print("Invalid format. Please use YYYY/MM/DD.")
 
+    # Input end_date loop with check conditions
+    valid_end = False
+    while not valid_end:
+        end = input('Enter end date (YYYY/MM/DD): ')
+        parts = end.split('/')
+        if len(parts) == 3:
+            try:
+                year = int(parts[0])
+                month = int(parts[1])
+                day = int(parts[2])
+                end_date = date(year, month, day)
+                if end_date >= start_date:
+                    valid_end = True
+                else:
+                    print("End date cannot be earlier than start date.")
+            except:
+                print("Invalid date. Please enter a valid date.")
+        else:
+            print("Invalid format. Please use YYYY/MM/DD.")
+
+        # Calculate total number of days in range
+        total_days = (end_date - start_date).days + 1
 
     # Input and validate no_pay_days
     no_pay_days = -1  # Initialize with an invalid value, to set the no_pay_days to be wrong
