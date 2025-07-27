@@ -21,3 +21,17 @@ def calculate_range(staff_info):
                 print("Invalid date. Please enter a valid date.")
         else:
             print("Invalid format. Please use YYYY/MM/DD.")
+
+
+    # Input and validate no_pay_days
+    no_pay_days = -1  # Initialize with an invalid value, to set the no_pay_days to be wrong
+    valid_input = False #valid_input is a variable to check the status of the input.  Initial value to be False until the check is correct
+    while not valid_input: #to initiate a loop until the user enter correct no-pay days, if no_pay_days > total_days is True
+        try:
+            no_pay_days = int(input('Enter number of no-pay days: ')) #input the value of no_pay_days and change to integer
+            if no_pay_days >= duration_days: #check if no_pay_days > total_days, which means user input wrong no_pay_days
+                print(f"No-pay days must be less than working days ({duration_days}). Please input again.") #prompt user to input again
+            else:
+                valid_input = True #if the if statement is false, then valid_input is True
+        except ValueError:
+            print('Invalid input for no-pay days. Please enter an integer.') #error when the no_pay_days input non numeric values
