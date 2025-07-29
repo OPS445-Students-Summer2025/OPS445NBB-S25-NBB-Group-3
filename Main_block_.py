@@ -21,3 +21,17 @@ if __name__ == "__main__":
     method = input("Enter 'range' to input date range or 'duration' to input number of days: ")
     while method not in ('range', 'duration'):
         method = input("Invalid input. Enter 'range' to input date range or 'duration' to input number of days: ")
+
+if method == 'duration':
+        before_tax = calculate_duration(staff_info)
+    else:
+        before_tax = calculate_range(staff_info)
+
+
+    tax, ei_cpp, net_pay = calculate_net_salary(before_tax)
+
+    print('\n' + staff_info['name'] + '(staff id' + staff_id + '), the net payable salary is:')
+    print('  Before tax and deductions: $' + str(round(before_tax, 2)))
+    print('  Tax deductible: $' + str(round(tax, 2)))
+    print('  Deductible for EI, CPP: $' + str(round(ei_cpp, 2)))
+    print('  The net payable is: $' + str(round(net_pay, 2)))
