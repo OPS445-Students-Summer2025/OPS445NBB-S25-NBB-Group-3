@@ -23,23 +23,23 @@ def calculate_range(staff_info):
             print("Invalid format. Please use YYYY/MM/DD.")
 
     # Input end_date loop with check conditions
-    valid_end = False
-    while not valid_end:
-        end = input('Enter end date (YYYY/MM/DD): ')
-        parts = end.split('/')
-        if len(parts) == 3:
+    valid_end = False  #valid_end is a variable to check the status of the input.  Initial value to be False until the check is correct
+    while not valid_end: #start a while loop until valid_start returns True
+        end = input('Enter end date (YYYY/MM/DD): ')  #prompt user to input value in YYYY/MM/DD
+        parts = end.split('/')  #to split the YYYY/MM/DD value input into 3 items in a list called parts
+        if len(parts) == 3:  #if the list contains all the 3 values
             try:
-                year = int(parts[0])
-                month = int(parts[1])
-                day = int(parts[2])
-                end_date = date(year, month, day)
-                if end_date >= start_date:
-                    valid_end = True
-                else:
+                year = int(parts[0])  #put 1st values in the list into the year variable
+                month = int(parts[1]) #put 2nd values in the list into the month variable
+                day = int(parts[2]) #put 3rd values in the list into the day variable
+                end_date = date(year, month, day) #transfer the 3 attribute to the date object
+                if end_date >= start_date: #check if the value of end_date is greater than start_date
+                    valid_end = True #if there is no error, then end the loop
+                else: #return error message if end_date < start_date
                     print("End date cannot be earlier than start date.")
-            except:
+            except: #return error message for wrong values of end_date
                 print("Invalid date. Please enter a valid date.")
-        else:
+        else: #return error message for wrong date format
             print("Invalid format. Please use YYYY/MM/DD.")
 
         # Calculate total number of days in range
