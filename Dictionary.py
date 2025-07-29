@@ -1,4 +1,8 @@
+#!/usr/bin/env python3
 import csv
+import re
+from datetime import date
+
 #Load staff data from csv
 def load_staff_data(filename):
     staff_data = {}
