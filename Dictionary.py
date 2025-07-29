@@ -14,3 +14,19 @@ def load_staff_data(filename):
     f.close()
     return staff_data
 
+def validate_staff_id(staff_id, staff_data):
+    try:
+        int(staff_id)  
+        if len(staff_id) != 6:
+            print('Error: Staff ID must be exactly 6 digits.')
+            return False
+        if staff_id not in staff_data:
+            print('Error: Staff ID not found in the database.')
+            return False
+        return True
+    except (ValueError, TypeError):
+        print('Error: Staff ID must contain only digits.')
+        return False
+    except:
+        print('Unexpected error to validate staff id.')
+        return False
