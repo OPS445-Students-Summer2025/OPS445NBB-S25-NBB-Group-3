@@ -6,20 +6,20 @@ def calculate_salary_from_range(staff_info, start_date, end_date, no_pay_days, o
 # Function 7: If selected "range" ask user to input no-pay days and overtime hours and calculate before tax 
 def calculate_range(staff_info): 
     # Input start_date loop with check conditions
-    valid_start = False
-    while not valid_start:
-        start = input('Enter start date (YYYY/MM/DD): ')
-        parts = start.split('/')
-        if len(parts) == 3:
+    valid_start = False   #valid_start is a variable to check the status of the input.  Initial value to be False until the check is correct
+    while not valid_start: #start a while loop until valid_start returns True
+        start = input('Enter start date (YYYY/MM/DD): ') #prompt user to input value in YYYY/MM/DD
+        parts = start.split('/') #to split the YYYY/MM/DD value input into 3 items in a list called parts
+        if len(parts) == 3: #if the list contains all the 3 values
             try:
-                year = int(parts[0])
-                month = int(parts[1])
-                day = int(parts[2])
-                start_date = date(year, month, day)
-                valid_start = True
-            except:
+                year = int(parts[0])  #put 1st values in the list into the year variable
+                month = int(parts[1]) #put 2nd values in the list into the month variable
+                day = int(parts[2]) #put 3rd values in the list into the day variable
+                start_date = date(year, month, day) #transfer the 3 attribute to the date object
+                valid_start = True #if there is no error, then end the loop
+            except: #if there is error, prompt user with error message
                 print("Invalid date. Please enter a valid date.")
-        else:
+        else: #if there is error, prompt user with error message
             print("Invalid format. Please use YYYY/MM/DD.")
 
     # Input end_date loop with check conditions
