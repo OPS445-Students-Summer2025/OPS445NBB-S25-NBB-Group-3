@@ -14,10 +14,11 @@ def load_staff_data(filename):
     f.close()
     return staff_data
 
+#Validate Staff ID using try-except only
 def validate_staff_id(staff_id, staff_data):
     try:
         int(staff_id)  
-        if len(staff_id) != 6:
+        if len(staff_id) != 6: #Check if numeric
             print('Error: Staff ID must be exactly 6 digits.')
             return False
         if staff_id not in staff_data:
