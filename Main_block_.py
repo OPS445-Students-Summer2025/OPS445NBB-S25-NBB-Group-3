@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-
-import csv
-from datetime import date
 
 # Main program logic directly under __main__
 if __name__ == "__main__":
