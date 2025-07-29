@@ -5,7 +5,7 @@ if __name__ == "__main__":
     if not staff_data:
         exit()
 
-  # Prompt for valid Staff ID
+  # Prompt for valid Staff ID and keep asking until it's valid
     staff_id = input('Enter Staff ID (6 digits): ')
 
     while not validate_staff_id(staff_id, staff_data):
@@ -14,18 +14,21 @@ if __name__ == "__main__":
 
     staff_info = staff_data[staff_id]
     
+    # Ask user whether they want to use a date range or a number of days
     method = input("Enter 'range' to input date range or 'duration' to input number of days: ")
     while method not in ('range', 'duration'):
         method = input("Invalid input. Enter 'range' to input date range or 'duration' to input number of days: ")
 
+# Calculate salary based on method selected
 if method == 'duration':
         before_tax = calculate_duration(staff_info)
     else:
         before_tax = calculate_range(staff_info)
 
-
+    # Call function to calculate tax, EI/CPP, and final net salary
     tax, ei_cpp, net_pay = calculate_net_salary(before_tax)
 
+    # Print final salary details for the staff
     print('\n' + staff_info['name'] + '(staff id' + staff_id + '), the net payable salary is:')
     print('  Before tax and deductions: $' + str(round(before_tax, 2)))
     print('  Tax deductible: $' + str(round(tax, 2)))
