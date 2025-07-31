@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import csv
 import re
+import argparse
 from datetime import date
 
 #Load staff data from csv
@@ -35,3 +36,24 @@ def validate_staff_id(staff_id, staff_data):
     except:
         print('Unexpected error to validate staff id.')
         return False
+    
+def arguments():
+    # Set up argparse
+    parser = argparse.ArgumentParser(description="Validate staff ID and display staff info.")
+    parser.add_argument("staff_id", help="The 6-digit staff ID to validate")
+    parser.add_argument("csv_file", help="Path to the staff CSV file")
+    args = parser.parse_args()
+
+    # Load staff data
+    staff_data = load_staff_data(args.csv_file)
+
+    # Validate and display info
+    if validate_staff_id(args.staff_id, staff_data):
+        staff = staff_data[args.staff_id]
+        print("\n✅ Valid Staff ID")
+        print(f"Name        : {staff['name']}")
+        print(f"Type        : {staff['type']}")
+        print(f"Salary      : ${staff['salary']:.2f}")
+    else:
+        print("\n❌ Invalid Staff ID.")
+
