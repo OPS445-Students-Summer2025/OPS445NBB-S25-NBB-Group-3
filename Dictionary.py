@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import csv
-import re
+#import re
 import argparse
 from datetime import date
 
