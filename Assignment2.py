@@ -1,3 +1,43 @@
+#!/usr/bin/env python3
+import csv
+#import re
+import argparse
+from datetime import date
+
+#Load staff data from csv
+def load_staff_data(filename):
+    staff_data = {}
+    f = open(filename, 'r', newline='')
+    reader = csv.DictReader(f, skipinitialspace=True)
+    for row in reader:
+        staff_id = row['Staff ID: ']
+        staff_data[staff_id] = {
+            'name': row['Staff Name:'],
+            'type': row['Monthly / Hourly:'],
+            'salary': float(row['Salary:'])
+        }
+    f.close()
+    return staff_data
+
+#Validate Staff ID using try-except only
+def validate_staff_id(staff_id, staff_data):
+    try:
+        int(staff_id)  
+        if len(staff_id) != 6: #Check if numeric
+            print('Error: Staff ID must be exactly 6 digits.')
+            return False
+        if staff_id not in staff_data:
+            print('Error: Staff ID not found in the database.')
+            return False
+        return True
+    except (ValueError, TypeError):
+        print('Error: Staff ID must contain only digits.')
+        return False
+    except:
+        print('Unexpected error to validate staff id.')
+        return False
+   
+
 # Function 3: Calculate salary from date range
 def calculate_salary_from_range(staff_info, start_date, end_date, no_pay_days, overtime_hours):
     days_worked = (end_date - start_date).days + 1 - no_pay_days
@@ -72,3 +112,4 @@ def calculate_range(staff_info):
 
     before_tax = calculate_salary_from_range(staff_info, start_date, end_date, no_pay_days, overtime_hours) # call calculate_salary_from_range function to return before tax
     return before_tax
+
