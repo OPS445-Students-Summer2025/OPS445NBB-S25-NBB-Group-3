@@ -1,6 +1,41 @@
 #!/usr/bin/env python3
+
+'''
+OPS445 Assignment 2
+Program: Assignment2.py 
+The python code in this file is original work written by
+OPS445NBB Group 3, students:
+
+No code in this file is copied from any other source
+except those provided by the course instructor, including any person,
+textbook, or on-line resource. We have not shared this python script
+with anyone or anything except for submission for grading. We understand
+that the Academic Honesty Policy will be enforced and
+violators will be reported and appropriate action will be taken.
+
+Author: OPS445NBB Group3
+Semester: Summer 2025
+    Sing Man Wong
+    Leung Wai Rene Chan
+    Thit Lwin On
+    Anish KC
+    Kevin Manzi
+
+Description: 
+This program calculates the net salary for a staff member.
+        User will be prompted to enter:
+        - Staff ID (6 digits)
+        - Either a date range or a duration in days
+        - Number of no-pay days
+        - Number of overtime hours
+
+        The program will then calculate:
+        - Gross salary
+        - Tax, EI, CPP deductions
+        - Net payable salary
+'''
+
 import csv
-#import re
 import argparse
 from datetime import date
 
@@ -210,6 +245,34 @@ if __name__ == "__main__":
     if not staff_data:
         exit()
 
+    # Introduce argparse as a help option for the script.  User can access this help option by running the script with -h, -help or the longer option of --help-info
+    parser = argparse.ArgumentParser(
+        description="Calculate net salary for staff based on either date range or duration."
+    )
+    parser.add_argument(
+        "--help-info",
+        action="store_true",
+        help="Show information about how to use the program."
+    )
+    args = parser.parse_args()
+
+    if args.help_info:
+        print("""
+        This program calculates the net salary for a staff member.
+        You will be prompted to enter:
+        - Staff ID (6 digits)
+        - Either a date range or a duration in days
+        - Number of no-pay days
+        - Number of overtime hours
+
+        The program will then calculate:
+        - Gross salary
+        - Tax, EI, CPP deductions
+        - Net payable salary
+        """)
+        exit()
+
+    
   # Prompt for valid Staff ID and keep asking until it's valid
     staff_id = input('Enter Staff ID (6 digits): ')
 
@@ -239,5 +302,6 @@ if __name__ == "__main__":
     print('  Tax deductible: $' + str(round(tax, 2)))
     print('  Deductible for EI, CPP: $' + str(round(ei_cpp, 2)))
     print('  The net payable is: $' + str(round(net_pay, 2)))
+
 
 
