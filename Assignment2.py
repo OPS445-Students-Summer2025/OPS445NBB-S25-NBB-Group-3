@@ -91,8 +91,8 @@ def calculate_range(staff_info):
     while not valid_input: #to initiate a loop until the user enter correct no-pay days, if no_pay_days > total_days is True
         try:
             no_pay_days = int(input('Enter number of no-pay days: ')) #input the value of no_pay_days and change to integer
-            if no_pay_days >= duration_days: #check if no_pay_days > total_days, which means user input wrong no_pay_days
-                print(f"No-pay days must be less than working days ({duration_days}). Please input again.") #prompt user to input again
+            if no_pay_days >= total_days: #check if no_pay_days > total_days, which means user input wrong no_pay_days
+                print(f"No-pay days must be less than working days ({total_days}). Please input again.") #prompt user to input again
             else:
                 valid_input = True #if the if statement is false, then valid_input is True
         except ValueError:
@@ -225,18 +225,19 @@ if __name__ == "__main__":
         method = input("Invalid input. Enter 'range' to input date range or 'duration' to input number of days: ")
 
 # Calculate salary based on method selected
-if method == 'duration':
+    if method == 'duration':
         before_tax = calculate_duration(staff_info)
     else:
         before_tax = calculate_range(staff_info)
-
-    # Call function to calculate tax, EI/CPP, and final net salary
+    
+        # Call function to calculate tax, EI/CPP, and final net salary
     tax, ei_cpp, net_pay = calculate_net_salary(before_tax)
-
-    # Print final salary details for the staff
+    
+        # Print final salary details for the staff
     print('\n' + staff_info['name'] + '(staff id' + staff_id + '), the net payable salary is:')
     print('  Before tax and deductions: $' + str(round(before_tax, 2)))
     print('  Tax deductible: $' + str(round(tax, 2)))
     print('  Deductible for EI, CPP: $' + str(round(ei_cpp, 2)))
     print('  The net payable is: $' + str(round(net_pay, 2)))
+
 
