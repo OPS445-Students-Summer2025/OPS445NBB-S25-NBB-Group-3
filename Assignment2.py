@@ -117,8 +117,8 @@ def calculate_range(staff_info):
         else: #return error message for wrong date format
             print("Invalid format. Please use YYYY/MM/DD.")
 
-        # Calculate total number of days in range
-        total_days = (end_date - start_date).days + 1
+    # Calculate total number of days in range
+    total_days = (end_date - start_date).days + 1
 
     # Input and validate no_pay_days
     no_pay_days = -1  # Initialize with an invalid value, to set the no_pay_days to be wrong
